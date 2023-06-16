@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Conversor</title>
+    <script src="script.js"></script>
+</head>
+
+<body>
+    <div>
+        <h1>Conversor Decimal-Binário</h1>
+        <label for="decimal">Número Decimal:</label>
+        <input type="text" id="decimal">
+        <button onclick="converterDecBin()">Converter</button>
+        <p id="resultadoBinario"></p>
+    </div>
+
+    <div>
+        <h1>Conversor Binário-Decimal</h1>
+        <label for="binario">Número Decimal:</label>
+        <input type="text" id="binario">
+        <button onclick="converterBinDec()">Converter</button>
+        <p id="resultadoDecimal"></p>
+    </div>
+
+    <script>
+        function converterDecBin() {
+            var decimal = document.getElementById("decimal").value;
+            var binario = decimalParaBinario(decimal);
+            document.getElementById("resultadoBinario").textContent = "Binário: " + binario;
+        }
+
+        function converterBinDec() {
+            var binario = document.getElementById("binario").value;
+            var decimal = binarioParaDecimal(binario);
+            document.getElementById("resultadoDecimal").textContent = "Decimal: " + decimal;
+        }
+
+        function binarioParaDecimal(binario) {
+            var decimal = 0;
+            var posicao = 0;
+
+            while (binario > 0) {
+                var digito = binario % 10;
+                decimal += digito * Math.pow(2, posicao);
+                binario = Math.floor(binario / 10);
+                posicao++;
+            }
+
+            return decimal;
+        }
+
+    </script>
+
+</body>
+
+</html>
